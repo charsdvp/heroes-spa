@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types'
 import { getHeroesByPublihsher } from '../helpers'
 import { HeroCard } from './HeroCard'
+import { useMemo } from 'react'
 
 export const HeroList = ({ publisher }) => {
-  // obtenemos los heroes
-  const heroes = getHeroesByPublihsher(publisher)
+  // obtenemos los heroes y memorizamos los valores de la funcion
+  const heroes = useMemo(() => getHeroesByPublihsher(publisher), [publisher])
   return (
     <div className='row rows-cols-1 row-cols-md-3 g-3'>
       {

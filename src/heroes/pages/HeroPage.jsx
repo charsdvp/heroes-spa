@@ -1,11 +1,12 @@
 import { useParams, Navigate, useNavigate } from 'react-router-dom'
 import { getHeroById } from '../helpers'
+import { useMemo } from 'react'
 export const HeroPage = () => {
   // useParams es un React Router Hook que le permite acceder a parámetros dinámicos en la URL. useParams devuelve un objeto de pares clave
   const { id } = useParams()
   const navigate = useNavigate()
   // podemos memorizar la funcion si sabemos que no cambiara
-  const hero = getHeroById(id)
+  const hero = useMemo(() => getHeroById(id), [id])
   // console.log(hero)
   const onNavigateBack = () => {
     // nos permite navegar entre el historial
