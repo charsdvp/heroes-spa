@@ -13,7 +13,8 @@ export const HeroesRoutes = () => {
         <Route path='/dc' element={<DcPage />} />
 
         <Route path='/search' element={<SearchPage />} />
-        <Route path='/hero' element={<HeroPage />} />
+        {/* ruta dinamica */}
+        <Route path='/hero/:id' element={<HeroPage />} />
 
         {/* Creamos un comodin por si no existe la page */}
         <Route path='/' element={<Navigate to='/marvel' />} />
