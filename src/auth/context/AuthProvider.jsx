@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import { useReducer } from 'react'
-import { AuthContext } from './AuthContext'
-import { authReducer } from './authReducer'
+import { AuthContext, authReducer } from './index'
+import { types } from '../types/types'
 
 export const AuthProvider = ({ children }) => {
   const initialState = {
@@ -9,8 +9,20 @@ export const AuthProvider = ({ children }) => {
   }
   // usamos nuestro reducer
   const [authState, dispatch] = useReducer(authReducer, initialState)
+
+  const login = (name = '') => {
+    const action = {
+      type: types.login,
+      payload: {
+        id: 'ABC',
+        name
+      }
+    }
+    // ejecutamos nuestra accion
+    dispatch(action)
+  }
   return (
-    <AuthContext.Provider value={{}}>
+    <AuthContext.Provider value={{ authState, login }}>
       {children}
     </AuthContext.Provider>
   )
