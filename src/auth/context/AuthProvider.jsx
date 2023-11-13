@@ -7,17 +7,28 @@ export const AuthProvider = ({ children }) => {
   const initialState = {
     logged: false
   }
+  const init = () => {
+    const user = JSON.parse(localStorage.getItem('user'))
+    return {
+      // null
+      logged: !!user,
+      user
+    }
+  }
   // usamos nuestro reducer
-  const [authState, dispatch] = useReducer(authReducer, initialState)
+  const [authState, dispatch] = useReducer(authReducer, initialState, init)
 
   const login = (name = '') => {
+    const user = {
+      id: 'ABC',
+      name
+    }
     const action = {
       type: types.login,
-      payload: {
-        id: 'ABC',
-        name
-      }
+      payload: user
     }
+    // agregamos a nuestro storage nuestro usuario
+    localStorage.setItem('user', JSON.stringify(user))
     // ejecutamos nuestra accion
     dispatch(action)
   }
