@@ -4,12 +4,13 @@ import { AuthContext } from '../../auth/context/AuthContext'
 
 export const Navbar = () => {
   // traemos nuestro contexto para poder agregar el nombre del usuario en el navbar
-  const { authState } = useContext(AuthContext)
+  const { authState, logout } = useContext(AuthContext)
   const { user } = authState
 
   // customHook de react-router
   const navigate = useNavigate()
   const onLogout = () => {
+    logout()
     navigate('/login', {
       replace: true
     })
