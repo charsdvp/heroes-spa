@@ -12,6 +12,10 @@ export const SearchPage = () => {
   const { q = '' } = queryString.parse(location.search)
   // obtenemos los heroes filtrados por el query - name
   const heroes = getHeroesByName(q)
+
+  const showSearch = q.length === 0
+  const showError = !showSearch && heroes.length === 0
+
   // reutilizamos nuestro hook useform para controlar el form
   const { searchtext, onInputChange } = useForm({
     searchtext: q
@@ -20,7 +24,7 @@ export const SearchPage = () => {
   const onSearchSubmit = (event) => {
     event.preventDefault()
     // limpiamos el texto
-    if (searchtext.trim().length <= 1) return
+    // if (searchtext.trim().length <= 1) return
     // navegamos hacia -> searchtext
     navigate(`?q=${searchtext.toLowerCase().trim()}`)
   }
@@ -43,10 +47,10 @@ export const SearchPage = () => {
         </div>
         <div className='col-7'>
           <h4>Results</h4>
-          <div className='alert alert-primary'>
+          <div className='alert alert-primary' style={{ display: showSearch ? '' : 'none' }}>
             Search a hero
           </div>
-          <div className='alert alert-danger'>
+          <div className='alert alert-danger' style={{ display: showError ? '' : 'none' }}>
             No hero with <b>{q}</b>
           </div>
           {
