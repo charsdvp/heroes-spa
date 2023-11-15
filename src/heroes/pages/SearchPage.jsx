@@ -34,7 +34,7 @@ export const SearchPage = () => {
       <div className="row">
         <div className='col-5'>
           <h4>Searching...</h4>
-          <form onSubmit={ onSearchSubmit }>
+          <form aria-label='form' onSubmit={ onSearchSubmit }>
             <input type='text'
               placeholder='Search a hero'
               className='form-control'

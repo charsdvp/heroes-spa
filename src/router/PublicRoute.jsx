@@ -7,7 +7,6 @@ export const PublicRoute = ({ children }) => {
   // traemos nuestro contexto para saber si estamos logueados
   const { logged } = useContext(AuthContext)
   // renderizamos nuestros componentes o regresamos a login
-  // verificamos que authState este definido
   return (
     !logged
       ? children
