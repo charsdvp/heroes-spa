@@ -9,7 +9,7 @@ const CharactersByHero = ({ alter_ego, characters }) => {
 }
 export const HeroCard = ({ id, superhero, publisher, alter_ego, first_appearance, characters }) => {
   // creamos una ruta para las imagenes
-  const heroImageUrl = `/assets/heroes/${id}.jpg`
+  const heroImageUrl = `/public/heroes/${id}.jpg`
   return (
     <div className='col animate__animated animate__fadeIn'>
       <div className='card'>

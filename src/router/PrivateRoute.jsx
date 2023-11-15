@@ -5,14 +5,14 @@ import { AuthContext } from '../auth/context/AuthContext'
 
 export const PrivateRoute = ({ children }) => {
   // traemos nuestro contexto para saber si estamos logueados
-  const { logged } = useContext(AuthContext)
-
+  const { authState } = useContext(AuthContext)
+  // !logged
   const { pathname, search } = useLocation()
   const lasthPath = pathname + search
   localStorage.setItem('lasthPath', lasthPath)
   // renderizamos nuestros componentes o regresamos a login
   return (
-      logged
+      authState.logged
       ? children
       : <Navigate to='/login' />
   )

@@ -4,7 +4,7 @@ import { AuthContext } from '../../auth/context/AuthContext'
 
 export const Navbar = () => {
   // traemos nuestro contexto para poder agregar el nombre del usuario en el navbar
-  const { logout, user } = useContext(AuthContext)
+  const { logout, authState } = useContext(AuthContext)
   // customHook de react-router
   const navigate = useNavigate()
   const onLogout = () => {
@@ -41,7 +41,7 @@ export const Navbar = () => {
       </div>
       <div className='navbar-collapse collapse w-100 order-3 dual-collapse2 d-flex justify-content-end'>
         <ul className='navbar-nav ml-auto'>
-          <span className='nav-item nav-link text-info'>{user?.name}</span>
+          <span className='nav-item nav-link text-info'>{authState.user?.name}</span>
           <button
             className='nav-item nav-link btn'
             onClick={onLogout}>Logout</button>
